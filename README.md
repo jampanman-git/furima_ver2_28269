@@ -1,24 +1,50 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# テーブル設計
 
-Things you may want to cover:
+## users テーブル
 
-* Ruby version
+| Column      | Type   | Options     |
+| ----------- | ------ | ----------- |
+| nickname    | string | null: false |
+| last_name   | string | null: false |
+| first_name  | string | null: false |
+| last_name2  | string | null: false |
+| first_name2 | string | null: false |
+| password    | string | null: false |
+| email       | string | null: false |
+| birth_year  | integer| null: false |
+| birth_month | integer| null: false |
+| birth_day   | integer| null: false |
 
-* System dependencies
+## goods テーブル
 
-* Configuration
+| Column       | Type       | Options     |
+| ------------ | ---------- | ----------- |
+| image        | text       | null: false |
+| name         | string     | null: false |
+| description  | text       | null: false |
+| category     | string     | null: false |
+| status       | string     | null: false |
+| delivery_fee | string     | null: false |
+| area         | string     | null: false |
+| delivery_day | string     | null: false |
+| price        | integer    | null: false |
+| user_id      | references | null: false, foreign_key: true |
 
-* Database creation
+## orders テーブル
 
-* Database initialization
+| Column     | Type       | Options     |
+| ---------- | -------    | ----------- |
+| card_num   | integer    | null: false |
+| expiration | integer    | null: false |
+| postal     | string     | null: false |
+| prefecture | string     | null: false |
+| city       | string     | null: false |
+| address    | string     | null: false |
+| building   | string     |             |
+| phone      | integer    | null: false |
+| good_price | references | null: false, foreign_key: true |
+| good_id    | references | null: false, foreign_key: true |
+| user_id    | references | null: false, foreign_key: true |
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
