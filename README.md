@@ -17,6 +17,10 @@
 | birth_month | integer| null: false |
 | birth_day   | integer| null: false |
 
+### Association
+- has_many :items
+- has_many :transactions
+
 ## goods テーブル
 
 | Column       | Type       | Options     |
@@ -31,6 +35,10 @@
 | delivery_day | string     | null: false |
 | price        | integer    | null: false |
 | user_id      | references | null: false, foreign_key: true |
+
+### Association
+- has_one :order
+- belongs_to :users
 
 ## orders テーブル
 
@@ -48,3 +56,6 @@
 | good_id    | references | null: false, foreign_key: true |
 | user_id    | references | null: false, foreign_key: true |
 
+### Association
+- belongs_to :users
+- belongs_to :items
