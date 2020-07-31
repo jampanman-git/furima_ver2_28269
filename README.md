@@ -13,15 +13,14 @@
 | first_name2 | string | null: false |
 | password    | string | null: false |
 | email       | string | null: false |
-| birth_year  | integer| null: false |
-| birth_month | integer| null: false |
-| birth_day   | integer| null: false |
+| birthday    | date   | null: false |
+
 
 ### Association
 - has_many :items
 - has_many :transactions
 
-## goods テーブル
+## items テーブル
 
 | Column       | Type       | Options     |
 | ------------ | ---------- | ----------- |
@@ -34,28 +33,26 @@
 | area         | string     | null: false |
 | delivery_day | string     | null: false |
 | price        | integer    | null: false |
-| user_id      | references | null: false, foreign_key: true |
+| user         | references | null: false, foreign_key: true |
 
 ### Association
-- has_one :order
-- belongs_to :users
+- has_one :transaction
+- belongs_to :user
 
-## orders テーブル
+## transactions テーブル
 
 | Column     | Type       | Options     |
 | ---------- | -------    | ----------- |
-| card_num   | integer    | null: false |
 | expiration | integer    | null: false |
 | postal     | string     | null: false |
 | prefecture | string     | null: false |
 | city       | string     | null: false |
 | address    | string     | null: false |
 | building   | string     |             |
-| phone      | integer    | null: false |
-| good_price | references | null: false, foreign_key: true |
-| good_id    | references | null: false, foreign_key: true |
-| user_id    | references | null: false, foreign_key: true |
+| phone      | string     | null: false |
+| item       | references | null: false, foreign_key: true |
+| user       | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
