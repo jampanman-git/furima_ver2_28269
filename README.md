@@ -29,16 +29,18 @@
 | name         | string     | null: false |
 | description  | text       | null: false |
 | category     | string     | null: false |
-| status       | string     | null: false |
-| delivery_fee | string     | null: false |
-| area         | string     | null: false |
-| delivery_day | string     | null: false |
 | price        | integer    | null: false |
 | user         | references | null: false, foreign_key: true |
 
 ### Association
 - has_one :transaction
 - belongs_to :user
+
+### Active Hash
+| status       | string     | null: false |
+| delivery_fee | string     | null: false |
+| area         | string     | null: false |
+| delivery_day | string     | null: false |
 
 ## transactions テーブル
 
