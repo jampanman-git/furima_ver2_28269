@@ -19,7 +19,7 @@
 ### Association
 - has_many :items
 - has_many :transactions
-- has_many :address
+- has_one :address
 
 ## items テーブル
 
@@ -54,7 +54,7 @@
 - belongs_to :item
 
 
-## address テーブル
+## addresses テーブル
 | Column     | Type       | Options     |
 | ---------- | -------    | ----------- |
 | postal     | string     | null: false |
