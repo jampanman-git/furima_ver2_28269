@@ -19,6 +19,7 @@
 ### Association
 - has_many :items
 - has_many :transactions
+- has_many :address
 
 ## items テーブル
 
@@ -56,3 +57,17 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
+
+
+## address テーブル
+| Column     | Type       | Options     |
+| ---------- | -------    | ----------- |
+| expiration | integer    | null: false |
+| postal     | string     | null: false |
+| prefecture | string     | null: false |
+| city       | string     | null: false |
+
+
+
+### Association
+- belongs_to :user
