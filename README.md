@@ -44,13 +44,6 @@
 
 | Column     | Type       | Options     |
 | ---------- | -------    | ----------- |
-| expiration | integer    | null: false |
-| postal     | string     | null: false |
-| prefecture | string     | null: false |
-| city       | string     | null: false |
-| address    | string     | null: false |
-| building   | string     |             |
-| phone      | string     | null: false |
 | item       | references | null: false, foreign_key: true |
 | user       | references | null: false, foreign_key: true |
 
@@ -62,12 +55,13 @@
 ## address テーブル
 | Column     | Type       | Options     |
 | ---------- | -------    | ----------- |
-| expiration | integer    | null: false |
 | postal     | string     | null: false |
 | prefecture | string     | null: false |
 | city       | string     | null: false |
-
-
+| house_num  | string     | null: false |
+| building   | string     |             |
+| phone      | integer    | null: false |
+| user       | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
