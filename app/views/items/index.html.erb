@@ -133,11 +133,11 @@
           <%= image_tag "item-sample.png", class: "item-img" %>
 
           <%# 商品が売れていればsold outの表示 %>
-          <%if if current_item.transactions.empty?%>
+          <%if @current_item.transaction.empty?%>
             <div class='sold-out'>
               <span>Sold Out!!</span>
             </div>
-          <%end%>
+          <%end %>
           <%# //商品が売れていればsold outの表示 %>
 
         </div>
@@ -190,4 +190,4 @@
     <%= image_tag 'camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
   </a>
 </div>
-<%= render "shared/footer" %>
+<%# <%= render "shared/footer" %> %>
