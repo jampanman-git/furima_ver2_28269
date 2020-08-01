@@ -19,7 +19,6 @@
 ### Association
 - has_many :items
 - has_many :orders
-- has_one :address
 
 ## items テーブル
 
@@ -33,6 +32,7 @@
 
 ### Association
 - has_one :order
+- has_one :address
 - belongs_to :user
 
 ### Active Hash
@@ -63,7 +63,7 @@
 | house_num  | string     | null: false |
 | building   | string     |             |
 | phone      | string     | null: false |
-| user       | references | null: false, foreign_key: true |
+| item       | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :item
