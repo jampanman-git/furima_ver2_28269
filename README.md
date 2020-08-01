@@ -28,7 +28,6 @@
 | image        | text       | null: false |
 | name         | string     | null: false |
 | description  | text       | null: false |
-| category     | string     | null: false |
 | price        | integer    | null: false |
 | user         | references | null: false, foreign_key: true |
 
@@ -37,10 +36,11 @@
 - belongs_to :user
 
 ### Active Hash
-| status       | string     | null: false |
-| delivery_fee | string     | null: false |
-| area         | string     | null: false |
-| delivery_day | string     | null: false |
+| status       | integer     | null: false |
+| delivery_fee | integer     | null: false |
+| area         | integer     | null: false |
+| delivery_day | integer     | null: false |
+| category     | integer     | null: false |
 
 ## orders テーブル
 
@@ -58,7 +58,7 @@
 | Column     | Type       | Options     |
 | ---------- | -------    | ----------- |
 | postal     | string     | null: false |
-| prefecture | string     | null: false |
+| prefecture | integer    | null: false |
 | city       | string     | null: false |
 | house_num  | string     | null: false |
 | building   | string     |             |
@@ -66,4 +66,4 @@
 | user       | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :user
+- belongs_to :item
