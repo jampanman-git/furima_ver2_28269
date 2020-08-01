@@ -9,8 +9,8 @@
 | nickname    | string | null: false |
 | last_name   | string | null: false |
 | first_name  | string | null: false |
-| last_name2  | string | null: false |
-| first_name2 | string | null: false |
+| last_name_kana  | string | null: false |
+| first_name_kana | string | null: false |
 | password    | string | null: false |
 | email       | string | null: false |
 | birthday    | date   | null: false |
@@ -18,7 +18,7 @@
 
 ### Association
 - has_many :items
-- has_many :transactions
+- has_many :orders
 - has_one :address
 
 ## items テーブル
@@ -33,7 +33,7 @@
 | user         | references | null: false, foreign_key: true |
 
 ### Association
-- has_one :transaction
+- has_one :order
 - belongs_to :user
 
 ### Active Hash
@@ -42,7 +42,7 @@
 | area         | string     | null: false |
 | delivery_day | string     | null: false |
 
-## transactions テーブル
+## orders テーブル
 
 | Column     | Type       | Options     |
 | ---------- | -------    | ----------- |
@@ -62,7 +62,7 @@
 | city       | string     | null: false |
 | house_num  | string     | null: false |
 | building   | string     |             |
-| phone      | integer    | null: false |
+| phone      | string     | null: false |
 | user       | references | null: false, foreign_key: true |
 
 ### Association
