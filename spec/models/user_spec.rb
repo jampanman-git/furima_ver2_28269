@@ -17,13 +17,13 @@ describe User do
         @user.nickname = "aaaaaa"
         expect(@user).to be_valid
       end
-      it "passwordが半角英数字混合であれば登録できる"
+      it "passwordが半角英数字混合であれば登録できる" do
       end
-      it "last_nameとfirst_name、last_name_kanaとfirst_name_kana、birthdayがあれば登録できる"
+      it "last_nameとfirst_name、last_name_kanaとfirst_name_kana、birthdayがあれば登録できる" do
       end
-      it "last_nameとfirst_nameが全角（漢字・ひらがな・カタカナ）で入力してあれば登録できる"
+      it "last_nameとfirst_nameが全角（漢字・ひらがな・カタカナ）で入力してあれば登録できる" do
       end
-      it "last_name_kanaとfirst_name_kanaが全角（カタカナ）であれば登録できる"
+      it "last_name_kanaとfirst_name_kanaが全角（カタカナ）であれば登録できる" do
       end
     end
 
@@ -36,11 +36,35 @@ describe User do
       end
       it "重複したemailが存在する場合登録できない" do
       end
+      it "emailに＠を含んでいなければ登録できない"
+      end
       it "passwordが空では登録できない" do
       end
       it "passwordが5文字以下であれば登録できない" do
       end
       it "passwordが存在してもpassword_confirmationが空では登録できない" do
+      end
+      it "passwordが半角英数字以外の文字が含まれていたら登録できない" do
+      end
+      it "passwordに半角英数字が混合されていなければ登録できない" do
+      end
+      it "last_nameが空では登録できない"
+      end
+      it "last_nameが全角（漢字・ひらがな・カタカナ）でなければ登録できない"
+      end
+      it "first_nameが空では登録できない"
+      end
+      it "first_name全角（漢字・ひらがな・カタカナ）でなければ登録できない"
+      end
+      it "last_name_kanaが空では登録できない"
+      end
+      it "last_name_kanaが全角（カタカナ）でなければ登録できない"
+      end
+      it "first_name_kanaが空では登録できない"
+      end
+      it "first_name_kanaが全角（カタカナ）でなければ登録できない"
+      end
+      it "birthdayが空では登録できない"
       end
     end
   end
