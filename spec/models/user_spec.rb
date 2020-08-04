@@ -9,10 +9,9 @@ describe User do
       it "nicknameとemail、passwordとpassword_confirmationが存在すれば登録できる" do
         expect(@user).to be_valid
       end
-      it "emailに一意性があれば登録できる" do
-
-      end
       it "emailに@を含んでいれば登録できる"
+        @user.email = "a@gmail.com"
+        expect(@user).to be_valid
       end
       it "passwordが6文字以上であれば登録できる" do
         @user.password = "00000a"
@@ -20,13 +19,21 @@ describe User do
         expect(@user).to be_valid
       end
       it "passwordが半角英数字混合であれば登録できる" do
+        @user.password = "000aaa"
+        @user.password_confirmation = "000aaa"
+        expect(@user).to be_valid
       end
       it "last_nameとfirst_name、last_name_kanaとfirst_name_kana、birthdayがあれば登録できる" do
         expect(@user).to be_valid
       end
       it "last_nameとfirst_nameが全角（漢字・ひらがな・カタカナ）で入力してあれば登録できる" do
+        @user.last_name = "阿いウ"
+        @user.first_name = "江おカ"
+        expect(@user).to be_valid
       end
       it "last_name_kanaとfirst_name_kanaが全角（カタカナ）であれば登録できる" do
+        @user.last_name_kana = "アイウ"
+        @user.first_name_kana = "エオカ"
       end
     end
 
