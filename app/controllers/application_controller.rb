@@ -1,14 +1,15 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate,except: [:index,:show]
+  # before_action :authenticate,except: [:index,:show]
+  before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_out_path_for(resource)
     root_path # ログアウト後に遷移するpathを設定
   end
   
-  def authenticate
-    redirect_to new_user_registration_url unless user_signed_in?
-  end
+  # def authenticate
+  #   redirect_to new_user_registration_url unless user_signed_in?
+  # end
 
   private
   def configure_permitted_parameters
