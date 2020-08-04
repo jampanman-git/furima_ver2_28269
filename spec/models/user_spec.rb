@@ -11,6 +11,8 @@ describe User do
       it "nicknameが6文字以下で登録できる" do
       end
       it "passwordが6文字以上であれば登録できる" do
+        @user.nickname = "aaaaaa"
+        expect(@user).to be_valid
       end
     end
 
