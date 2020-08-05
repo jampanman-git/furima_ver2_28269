@@ -138,7 +138,7 @@
           <%= image_tag "item-sample.png", class: "item-img" %>
 
           <%# 商品が売れていればsold outの表示 %>
-          <%if @current_item.transaction%>
+          <%if current_user.items.transaction%>
             <div class='sold-out'>
               <span>Sold Out!!</span>
             </div>
@@ -163,7 +163,7 @@
       <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
       <%# 商品がない場合のダミー %>
       <%# 商品がある場合は表示されないようにしましょう %>
-      <%if @item.transaction%>
+      <%if @items.orders%>
         <li class='list'> 
           <%= link_to '#' do %>
           <%= image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", class: "item-img" %>
