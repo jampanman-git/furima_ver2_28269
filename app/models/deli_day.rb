@@ -1,0 +1,2 @@
+class DeliDay < ApplicationRecord
+end
