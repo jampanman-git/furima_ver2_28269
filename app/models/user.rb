@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :items
+
   with_options presence: true do
     validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, last_name: "は全角で入力してください。"}
     validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, first_name: "は全角で入力してください。"}
