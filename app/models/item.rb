@@ -15,7 +15,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :area
   belongs_to_active_hash :deli_fee
   belongs_to_active_hash :deli_day
-  
+
   #空の投稿を保存できないようにする
   with_options presence: true do
     validates :title, :integer, :category
@@ -32,4 +32,5 @@ class Item < ApplicationRecord
   validates :area_id
   validates :deli_fee_id
   validates :deli_day_id
+  end
 end
