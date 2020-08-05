@@ -138,13 +138,15 @@
         <div class='item-img-content'>
           <%= image_tag "item-sample.png", class: "item-img" %>
 
-          <%# 商品が売れていればsold outの表示 %>
-          <%if current_user.items.transaction%>
-            <div class='sold-out'>
-              <span>Sold Out!!</span>
-            </div>
-          <%end %>
+          <% if user_signed_in? %>
+            <%# 商品が売れていればsold outの表示 %>
+            <%if current_user.items.orders%>
+              <div class='sold-out'>
+                <span>Sold Out!!</span>
+              </div>
+          <%end%>
           <%# //商品が売れていればsold outの表示 %>
+          <%end%>
 
         </div>
         <div class='item-info'>
