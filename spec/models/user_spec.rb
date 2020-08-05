@@ -146,7 +146,7 @@ describe User do
         @user.valid?
         @user2.valid?
         @user3.valid?
-        expect(@user.errors.full_messages).to include("First name is invalid")
+        expect(@user.errors.full_messages).to include("Last name kana is invalid")
       end
 
       it "first_name_kanaが空では登録できない" do
@@ -162,7 +162,7 @@ describe User do
         @user.valid?
         @user2.valid?
         @user3.valid?
-        expect(@user.errors.full_messages).to include("First name is invalid")
+        expect(@user.errors.full_messages).to include("First name kana is invalid")
       end
 
       it "birthdayが空では登録できない" do
