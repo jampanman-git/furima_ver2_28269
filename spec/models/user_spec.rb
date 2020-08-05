@@ -2,6 +2,8 @@ require 'rails_helper'
 describe User do
   before do
     @user = FactoryBot.build(:user)
+    @user2 = FactoryBot.build(:user)
+    @user3 = FactoryBot.build(:user)
   end
 
   describe 'ユーザー新規登録' do
@@ -89,10 +91,18 @@ describe User do
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
 
-      it "passwordが半角英数字以外の文字が含まれていたら登録できない" do
+      it "passwordに半角英数字以外の文字が含まれていたら登録できない" do
+        @user.password = "abcd1234あ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid", "Password confirmation doesn't match Password")
       end
 
       it "passwordに半角英数字が混合されていなければ登録できない" do
+        @user.password = "aaaaaaaaa"
+        @user2.password = "11111111"
+        @user.valid?
+        @user2.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
 
       it "last_nameが空では登録できない" do
@@ -102,6 +112,11 @@ describe User do
       end
 
       it "last_nameが全角（漢字・ひらがな・カタカナ）でなければ登録できない" do
+        @user.last_name = "aaaa"
+        @user2.last_name = "1111"
+        @user.valid?
+        @user2.valid?
+        expect(@user.errors.full_messages).to include("Last name is invalid")
       end
 
       it "first_nameが空では登録できない" do
@@ -111,6 +126,11 @@ describe User do
       end
 
       it "first_name全角（漢字・ひらがな・カタカナ）でなければ登録できない" do
+        @user.first_name = "aaaa"
+        @user2.first_name = "1111"
+        @user.valid?
+        @user2.valid?
+        expect(@user.errors.full_messages).to include("First name is invalid")
       end
 
       it "last_name_kanaが空では登録できない" do
@@ -120,6 +140,13 @@ describe User do
       end
 
       it "last_name_kanaが全角（カタカナ）でなければ登録できない" do
+        @user.last_name_kana = "aaaa"
+        @user2.last_name_kana = "ああああ"
+        @user3.last_name_kana = "アアアア"
+        @user.valid?
+        @user2.valid?
+        @user3.valid?
+        expect(@user.errors.full_messages).to include("First name is invalid")
       end
 
       it "first_name_kanaが空では登録できない" do
@@ -129,6 +156,13 @@ describe User do
       end
 
       it "first_name_kanaが全角（カタカナ）でなければ登録できない" do
+        @user.first_name_kana = "aaaa"
+        @user2.first_name_kana = "ああああ"
+        @user3.first_name_kana = "アアアア"
+        @user.valid?
+        @user2.valid?
+        @user3.valid?
+        expect(@user.errors.full_messages).to include("First name is invalid")
       end
 
       it "birthdayが空では登録できない" do
