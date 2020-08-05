@@ -5,11 +5,6 @@ class Item < ApplicationRecord
     validates :image
     validates :name
     validates :description
-    validates :category
-    validates :status
-    validates :deli_fee
-    validates :area
-    validates :deli_day
     validates :price
     validates :user
   end
