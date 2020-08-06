@@ -25,9 +25,9 @@
 | Column       | Type       | Options     |
 | ------------ | ---------- | ----------- |
 | image        | text       | null: false |
-| name         | string     | null: false |
-| description  | text       | null: false |
-| price        | integer    | null: false |
+| name         | string     | null: false, length: { maximum: 40} |
+| description  | text       | null: false,length: { maximum: 1000} |
+| price        | integer    | null: false,length: { minimum: 300, maximum: 9999999 } |
 | user         | references | null: false, foreign_key: true |
 
 ### Association
