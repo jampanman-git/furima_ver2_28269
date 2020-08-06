@@ -8,8 +8,9 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.references :user, null: false, forign_key: true
       t.references :category, null: false, forign_key: true
       t.references :status, null: false, forign_key: true
-      t.references :
-      t.references :
+      t.references :area, null: false, forign_key: true
+      t.references :deli_fee, null: false, forign_key: true
+      t.references :deli_day, null: false, forign_key: true
       t.timestamps
     end
   end
