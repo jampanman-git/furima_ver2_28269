@@ -5,7 +5,7 @@
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with local: true do |f| %>
+    <%= form_with model: @item, url:new_item_path, local: true do |f| %>
 
     <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
     render 'shared/error_messages', model: f.object
@@ -50,12 +50,12 @@
           カテゴリー
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:category, :Category.data, :id, :name, {}, {class:"select-box"}) %>
+        <%= f.collection_select(:category, @category, :id, :name, {}, {class:"select-box"}) %>
         <div class="weight-bold-text">
           商品の状態
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:status, :Status.data, :id, :name, {}, {class:"select-box"}) %>
+        <%= f.collection_select(:status, @status, :id, :name, {}, {class:"select-box"}) %>
       </div>
     </div>
     <%# /商品の詳細 %>
@@ -71,17 +71,17 @@
           配送料の負担
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:deli_fee, DeliFee.data, :id, :name, {}, {class:"select-box"}) %>
+        <%= f.collection_select(:deli_fee, @deli_fee, :id, :name, {}, {class:"select-box"}) %>
         <div class="weight-bold-text">
           発送元の地域
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:area, Area.data, :id, :name, {}, {class:"select-box"}) %>
+        <%= f.collection_select(:area, @area, :id, :name, {}, {class:"select-box"}) %>
         <div class="weight-bold-text">
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:deli_day, DeliDay.data, :id, :name, {}, {class:"select-box"}) %>
+        <%= f.collection_select(:deli_day, @deli_day, :id, :name, {}, {class:"select-box"}) %>
       </div>
     </div>
     <%# /配送について %>

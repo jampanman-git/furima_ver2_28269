@@ -5,6 +5,11 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    @category = Category.all
+    @status = Status.all
+    @area = Area.all
+    @deli_fee = DeliFee.all
+    @deli_day = DeliDay.all
   end
 
   def create

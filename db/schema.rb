@@ -18,8 +18,18 @@ ActiveRecord::Schema.define(version: 2020_08_05_115956) do
     t.text "description", null: false
     t.integer "price", null: false
     t.bigint "user_id", null: false
+    t.bigint "category_id", null: false
+    t.bigint "status_id", null: false
+    t.bigint "area_id", null: false
+    t.bigint "deli_fee_id", null: false
+    t.bigint "deli_day_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["area_id"], name: "index_items_on_area_id"
+    t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["deli_day_id"], name: "index_items_on_deli_day_id"
+    t.index ["deli_fee_id"], name: "index_items_on_deli_fee_id"
+    t.index ["status_id"], name: "index_items_on_status_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
