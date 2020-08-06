@@ -4,9 +4,9 @@ class Item < ApplicationRecord
   
   with_options presence: true do
     validates :image
-    validates :name
-    validates :description
-    validates :price
+    validates :name, length: { maximum: 40}
+    validates :description, length: { maximum: 1000}
+    validates :price, length: { minimum: 300, maximum: 9999999 }
     validates :user
   end
 
