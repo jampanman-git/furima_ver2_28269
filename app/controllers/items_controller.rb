@@ -13,9 +13,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.create!(item_params)
-    
-    binding.pry
+    @item = Item.create(item_params)
   end
 
   private
