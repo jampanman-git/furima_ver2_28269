@@ -20,11 +20,11 @@ class Item < ApplicationRecord
 
   #空の投稿を保存できないようにする
   with_options presence: true do
-    validates :category
-    validates :status
-    validates :area
-    validates :deli_fee
-    validates :deli_day
+    validates :category_id
+    validates :status_id
+    validates :area_id
+    validates :deli_fee_id
+    validates :deli_day_id
   end
 
   #ジャンルの選択が「--」の時は保存できないようにする

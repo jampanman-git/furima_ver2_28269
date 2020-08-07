@@ -50,12 +50,12 @@
           カテゴリー
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:category, @category, :id, :name, {}, {class:"select-box"}) %>
+        <%= f.collection_select(:category_id, @category, :id, :name, {}, {class:"select-box"}) %>
         <div class="weight-bold-text">
           商品の状態
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:status, @status, :id, :name, {}, {class:"select-box"}) %>
+        <%= f.collection_select(:status_id, @status, :id, :name, {}, {class:"select-box"}) %>
       </div>
     </div>
     <%# /商品の詳細 %>
@@ -71,17 +71,17 @@
           配送料の負担
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:deli_fee, @deli_fee, :id, :name, {}, {class:"select-box"}) %>
+        <%= f.collection_select(:deli_fee_id, @deli_fee, :id, :name, {}, {class:"select-box"}) %>
         <div class="weight-bold-text">
           発送元の地域
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:area, @area, :id, :name, {}, {class:"select-box"}) %>
+        <%= f.collection_select(:area_id, @area, :id, :name, {}, {class:"select-box"}) %>
         <div class="weight-bold-text">
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:deli_day, @deli_day, :id, :name, {}, {class:"select-box"}) %>
+        <%= f.collection_select(:deli_day_id, @deli_day, :id, :name, {}, {class:"select-box"}) %>
       </div>
     </div>
     <%# /配送について %>
