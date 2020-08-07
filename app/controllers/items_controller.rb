@@ -13,7 +13,6 @@ class ItemsController < ApplicationController
   end
 
   def create
-    binding.pry
     Item.create!(item_params)
   end
 
