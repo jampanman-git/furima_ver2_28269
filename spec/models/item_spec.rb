@@ -3,6 +3,7 @@ describe User do
   before do
     @item = FactoryBot.build(:item)
     @item2 = FactoryBot.build(:item)
+    @item.image = fixture_file_upload('public/images/test_image.png')
   end
 
   describe 'ユーザー新規登録' do
@@ -12,7 +13,7 @@ describe User do
       end
 
       it "imageを含んでいれば登録できる" do
-        @item.image = ""
+        @item.image = "test_image.png"
         expect(@item).to be_valid
       end
 
@@ -30,36 +31,11 @@ describe User do
         @item.price = "300"
         expect(@item).to be_valid
       end
-
-      it "categoryが選ばれていれば登録できる" do
-        @item.cattegory_id = "2"
-        expect(@item).to be_valid
-      end
-
-      it "statusが選ばれていれば登録できる" do
-        @item.status_id = "2"
-        expect(@item).to be_valid
-      end
-
-      it "areaが選ばれていれば登録できる" do
-        @item.area_id = "2"
-        expect(@item).to be_valid
-      end
-
-      it "deli_feeが選ばれていれば登録できる" do
-        @item.deli_fee_id = "2"
-        expect(@item).to be_valid
-      end
-
-      it "deli_dayが選ばれていれば登録できる" do
-        @item.deli_day_id = "2"
-        expect(@item).to be_valid
-      end
     end
 
     context '商品出品がうまくいかないとき' do
       it "imageが空だと登録できない" do
-        @item.image = ''
+        @item.image = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
@@ -80,36 +56,6 @@ describe User do
         @item.price =
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
-      end
-
-      it "status_idが1だと保存できない" do
-        @item.status_id = 1
-        @item.valid?
-        expect(@item.errors.full_messages).to include("Status_id ")
-      end
-
-      it "status_idが1だと保存できない" do
-        @item.area_id = 1
-        @item.valid?
-        expect(@item.errors.full_messages).to include("Area_id ")
-      end
-
-      it "category_idが1だと保存できない" do
-        @item.status_id = 1
-        @item.valid?
-        expect(@item.errors.full_messages).to include("Category_id ")
-      end
-
-      it "deli_fee_idが1だと保存できない" do
-        @item.status_id = 1
-        @item.valid?
-        expect(@item.errors.full_messages).to include("DeliFee_id ")
-      end
-
-      it "status_idが1だと保存できない" do
-        @item.deli_day_id = 1
-        @item.valid?
-        expect(@item.errors.full_messages).to include("DEliDay_id ")
       end
 
       it "priceが300未満だと保存できない" do
