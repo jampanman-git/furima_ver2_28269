@@ -1,14 +1,18 @@
 window.addEventListener('load', function(){
-
-  let input_price = document.querySelectorAll("price-input")
+console.log("test")
+  let input_price = document.querySelector(".price-input")
   const addTaxPrice = document.getElementById("add-tax-price")
-  const profit = document.getElementById("profit")
+  const Profit = document.getElementById("profit")
 
 
-  input_price.addEventListener('change', function(){
-    var price = document.querySelectorAll("price-input").value;
-    var add_tax_price = price * 0.1
-    var profit_amount = price - add_tax_price
-  }
+  input_price.addEventListener('input', function(){
+    var price = this.value;
+    var add_tax_price = Math.floor(price * 0.1)/ 1;
+    var profit_amount = Math.floor(price - add_tax_price)/ 1;
+    console.log(add_tax_price)
 
-}
+    document.getElementById("add-tax-price").innerHTML = add_tax_price
+
+    document.getElementById("profit").innerHTML = profit_amount 
+  })
+})
