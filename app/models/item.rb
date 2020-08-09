@@ -8,7 +8,6 @@ class Item < ApplicationRecord
     validates :name, length: { maximum: 40}
     validates :description, length: { maximum: 1000}
     validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
-    validates :price
     validates :user
   end
 
