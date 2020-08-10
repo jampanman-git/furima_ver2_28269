@@ -13,47 +13,6 @@ describe User do
       end
 
       it "imageを含んでいれば登録できる" do
-        # @item.image = "test_image.png"
-        expect(@item).to be_valid
-      end
-
-      it "nameを含んでいれば登録できる" do
-        @item.name = "あああ"
-        expect(@item).to be_valid
-      end
-
-      it "descriptionを含んでいれば登録できる" do
-        @item.description = "あああ"
-        expect(@item).to be_valid
-      end
-
-      it "priceが入力されていれば登録できる" do
-        @item.price = "300"
-        expect(@item).to be_valid
-      end
-
-      it "categoryが選ばれていれば登録できる" do
-        @item.category_id = "2"
-        expect(@item).to be_valid
-      end
-
-      it "statusが選ばれていれば登録できる" do
-        @item.status_id = "2"
-        expect(@item).to be_valid
-      end
-
-      it "areaが選ばれていれば登録できる" do
-        @item.area_id = "2"
-        expect(@item).to be_valid
-      end
-
-      it "deli_feeが選ばれていれば登録できる" do
-        @item.deli_fee_id = "2"
-        expect(@item).to be_valid
-      end
-
-      it "deli_dayが選ばれていれば登録できる" do
-        @item.deli_day_id = "2"
         expect(@item).to be_valid
       end
     end
