@@ -13,7 +13,7 @@ describe User do
       end
 
       it "imageを含んでいれば登録できる" do
-        @item.image = "test_image.png"
+        # @item.image = "test_image.png"
         expect(@item).to be_valid
       end
 
@@ -53,33 +53,33 @@ describe User do
       end
 
       it "priceが空では登録できない" do
-        @item.price =
+        @item.price = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price can't be blank")
+        expect(@item.errors.full_messages).to include("Price can't be blank", "Price is not a number")
       end
 
       it "priceが300未満だと保存できない" do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price ")
+        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
       end
 
       it "priceが9999999より高いと保存できない" do
         @item.price = 10000000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price ")
+        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
 
       it "nameが40字より多いと保存できない" do
-        @item.name.length = 41
+        @item.name = "a" * 41
         @item.valid?
-        expect(@item.errors.full_messages).to include("Name ")
+        expect(@item.errors.full_messages).to include("Name is too long (maximum is 40 characters)")
       end
 
       it "descriptionが1000字より多いと保存できない" do
-        @item.description.length = 1001
+        @item.description = "a" * 1001
         @item.valid?
-        expect(@item.errors.full_messages).to include("Description ")
+        expect(@item.errors.full_messages).to include("Description is too long (maximum is 1000 characters)")
       end
     end
   end
