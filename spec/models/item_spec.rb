@@ -31,6 +31,31 @@ describe User do
         @item.price = "300"
         expect(@item).to be_valid
       end
+
+      it "categoryが選ばれていれば登録できる" do
+        @item.category_id = "2"
+        expect(@item).to be_valid
+      end
+
+      it "statusが選ばれていれば登録できる" do
+        @item.status_id = "2"
+        expect(@item).to be_valid
+      end
+
+      it "areaが選ばれていれば登録できる" do
+        @item.area_id = "2"
+        expect(@item).to be_valid
+      end
+
+      it "deli_feeが選ばれていれば登録できる" do
+        @item.deli_fee_id = "2"
+        expect(@item).to be_valid
+      end
+
+      it "deli_dayが選ばれていれば登録できる" do
+        @item.deli_day_id = "2"
+        expect(@item).to be_valid
+      end
     end
 
     context '商品出品がうまくいかないとき' do
@@ -80,6 +105,36 @@ describe User do
         @item.description = "a" * 1001
         @item.valid?
         expect(@item.errors.full_messages).to include("Description is too long (maximum is 1000 characters)")
+      end
+
+      it "status_idが1だと保存できない" do
+        @item.status_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Status must be other than 1")
+      end
+
+      it "area_idが1だと保存できない" do
+        @item.area_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Area must be other than 1")
+      end
+
+      it "category_idが1だと保存できない" do
+        @item.category_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
+      end
+
+      it "deli_fee_idが1だと保存できない" do
+        @item.deli_fee_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Deli fee must be other than 1")
+      end
+
+      it "status_idが1だと保存できない" do
+        @item.deli_day_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Deli day must be other than 1")
       end
     end
   end
