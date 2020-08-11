@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show]
+  before_action :set_item, only: [:show,:edit]
 
   def index
     @items = Item.order("created_at DESC")
@@ -18,7 +18,11 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
+    @category = Category.all
+    @status = Status.all
+    @area = Area.all
+    @deli_fee = DeliFee.all
+    @deli_day = DeliDay.all
   end
 
   def update
