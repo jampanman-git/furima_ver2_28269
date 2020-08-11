@@ -15,6 +15,21 @@ class ItemsController < ApplicationController
     @deli_day = DeliDay.all
   end
 
+  def create
+    @item = Item.new(item_params)
+
+    if @item.save
+      redirect_to root_path
+    else
+      @category = Category.all
+      @status = Status.all
+      @area = Area.all
+      @deli_fee = DeliFee.all
+      @deli_day = DeliDay.all
+      render :new
+    end
+  end
+
   def show
   end
 
@@ -36,21 +51,6 @@ class ItemsController < ApplicationController
       redirect_to root_path
     else
       redirect_to item_path(item)
-    end
-  end
-
-  def create
-    @item = Item.new(item_params)
-
-    if @item.save
-      redirect_to root_path
-    else
-      @category = Category.all
-      @status = Status.all
-      @area = Area.all
-      @deli_fee = DeliFee.all
-      @deli_day = DeliDay.all
-      render :new
     end
   end
 
