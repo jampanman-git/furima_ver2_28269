@@ -17,6 +17,12 @@ class ItemsController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
+  def update
+  end
+
   def destroy
     item = Item.find(params[:id])
     if current_user.id == item.user_id
