@@ -44,6 +44,11 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
+      @category = Category.all
+      @status = Status.all
+      @area = Area.all
+      @deli_fee = DeliFee.all
+      @deli_day = DeliDay.all
       render :edit
     end
   end
