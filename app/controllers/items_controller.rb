@@ -17,6 +17,16 @@ class ItemsController < ApplicationController
   def show
   end
 
+  def destroy
+    item = Item.find(params[:id])
+    if current_user.id == item.user_id
+      item.destroy
+      redirect_to root_path
+    else
+      redirect_to item_path(item)
+    end
+  end
+
   def create
     @item = Item.new(item_params)
 
