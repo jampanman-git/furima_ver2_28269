@@ -34,8 +34,16 @@ ActiveRecord::Schema.define(version: 2020_08_12_065232) do
   end
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "postal", null: false
+    t.integer "prefecture_id", null: false
+    t.string "city", null: false
+    t.string "house_num", null: false
+    t.string "building"
+    t.string "phone", null: false
+    t.bigint "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_addresses_on_item_id"
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
