@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get "sign_out", :to => "users/sessions#destroy"
   end
     
-    
+  resources :orders, only:[:index,:create,]
   resources :items
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'items#index'
