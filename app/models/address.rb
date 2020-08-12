@@ -1,13 +1,7 @@
 class Address < ApplicationRecord
   belongs_to :item
 
-  with_options presence: true do
-    validates :postal
-    validates :city
-    validates :house_num
-    validates :phone
-    validates :item
-  end
+  
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
