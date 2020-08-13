@@ -1,9 +1,5 @@
 class OrdersController < ApplicationController
 
-  def index
-    @orders = Order.all
-  end
-
   def new
     @order = OrderAddress.new
   end
@@ -21,7 +17,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:postal,:prefecture_id,:city,:house_num,:building,:phone).merge(user_id: current_user.id)
+    params.permit(:postal,:prefecture_id,:city,:house_num,:building,:phone).merge(user_id: current_user.id)
   end
 
   # def pay_item
