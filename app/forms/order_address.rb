@@ -4,7 +4,7 @@ class OrderAddress
   attr_accessor :postal, :city, :house_num, :phone
 
   with_options presence: true do
-    validates :postal
+    validates :postal,format: {with: /\A[0-9]{3}-[0-9]{4}\z/}
     validates :area_id,numericality: { other_than: 1 } 
     validates :city
     validates :house_num
