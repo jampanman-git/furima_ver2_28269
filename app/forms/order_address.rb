@@ -5,7 +5,7 @@ class OrderAddress
 
   with_options presence: true do
     validates :postal
-    validates :prefecture_id,numericality: { other_than: 1 } 
+    validates :area_id,numericality: { other_than: 1 } 
     validates :city
     validates :house_num
     validates :phone
@@ -13,7 +13,7 @@ class OrderAddress
 
   def save
     order = Order.create(item_id: item_id, user_id: user)
-    Address.create(postal: postal, prefecture_id: prefecture_id, city: city, house_num: house_num, building: building,phone: phone,order_id: order.id)
+    Address.create(postal: postal, area_id: area_id, city: city, house_num: house_num, building: building,phone: phone,order_id: order.id)
   end
 
 end
