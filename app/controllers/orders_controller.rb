@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :not_user, only: [:new]
 
   def index
   end
@@ -14,7 +15,7 @@ class OrdersController < ApplicationController
      @order.save  # バリデーションをクリアした時
      return redirect_to root_path
    else
-     render :index    # バリデーションに弾かれた時
+     render :new    # バリデーションに弾かれた時
    end
   end
 
@@ -31,5 +32,13 @@ class OrdersController < ApplicationController
       card: order_params[:token],    # カードトークン
       currency:'jpy'                 # 通貨の種類
     )
+  end
+
+  def not_user
+    if current_user.id == item.user_id
+      redirect_to item_path(@item.id)
+    else
+      render new
+    end
   end
 end
