@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   # before_action :not_user, only: [:new]
+  # before_action :not_user2, only: [:new]
 
   def index
   end
@@ -11,10 +12,9 @@ class OrdersController < ApplicationController
 
   def create
     @order = OrderAddress.new(order_params)
-    binding.pry
    if @order.valid?
+    pay_item
      @order.save  # バリデーションをクリアした時
-     pay_item
      return redirect_to root_path
    else
      render :new    # バリデーションに弾かれた時
@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.permit(:postal,:area_id,:city,:house_num,:building,:phone,:token).merge(user_id: current_user.id)
+    params.permit(:postal,:area_id,:city,:house_num,:building,:phone).merge(item_id =@item.id,user_id: current_user.id)
   end
 
   def pay_item
@@ -39,6 +39,12 @@ class OrdersController < ApplicationController
 
   # def not_user
   #   if current_user.id == @item.user_id
+  #     redirect_to item_path(@item.id)
+  #   end
+  # end
+
+  # def not_user2
+  #   unless user_signed_in?
   #     redirect_to item_path(@item.id)
   #   end
   # end
