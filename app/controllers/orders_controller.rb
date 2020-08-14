@@ -29,6 +29,7 @@ class OrdersController < ApplicationController
 
   def transaction_params
     params.permit(:token)
+  end
 
   def pay_item
     @item = Item.find(params[:item_id])
@@ -41,6 +42,7 @@ class OrdersController < ApplicationController
   end
 
   def not_user
+    @item = Item.find(params[:item_id])
     if current_user.id == @item.user_id
       redirect_to item_path(@item.id)
     end
