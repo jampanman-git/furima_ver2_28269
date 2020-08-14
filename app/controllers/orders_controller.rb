@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :not_user, only: [:new]
+  # before_action :not_user, only: [:new]
 
   def index
   end
@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.permit(:postal,:area_id,:city,:house_num,:building,:phone,:token).merge(user_id: current_user.id)
+    params.permit(:postal,:area_id,:city,:house_num,:building,:phone,:token,:price).merge(user_id: current_user.id)
   end
 
   def pay_item
@@ -34,11 +34,9 @@ class OrdersController < ApplicationController
     )
   end
 
-  def not_user
-    if current_user.id == @item.user_id
-      redirect_to item_path(@item.id)
-    else
-      render new
-    end
-  end
+  # def not_user
+  #   if current_user.id == @item.user
+  #     redirect_to item_path(@item.id)
+  #   end
+  # end
 end
