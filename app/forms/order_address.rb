@@ -8,7 +8,7 @@ class OrderAddress
     validates :area_id,numericality: { other_than: 1 } 
     validates :city
     validates :house_num
-    validates :phone
+    validates :phone,length: { maximum: 11},format: {with: /^[0-9]+$/}
   end
 
   def save
