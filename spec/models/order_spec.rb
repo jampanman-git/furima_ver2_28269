@@ -1,99 +1,60 @@
 require 'rails_helper'
-describe User do
+describe Order do
   before do
-    @item = FactoryBot.build(:item)
-    @item2 = FactoryBot.build(:item)
-    @item.image = fixture_file_upload('public/images/test_image.png')
+    @order = FactoryBot.build(:order)
   end
 
   describe 'ユーザー新規登録' do
     context '商品出品がうまくいくとき' do
       it "全ての項目が存在すれば登録できる" do
-        expect(@item).to be_valid
+        expect(@order).to be_valid
       end
 
-      it "imageを含んでいれば登録できる" do
-        expect(@item).to be_valid
+      it "buildingが空でも登録できる"
+        @order.building = ''
+        expect(@order).to be_valid
       end
     end
 
     context '商品出品がうまくいかないとき' do
-      it "imageが空だと登録できない" do
-        @item.image = nil
-        @item.valid?
-        expect(@item.errors.full_messages).to include("Image can't be blank")
+      it "postalが空だと登録できない" do
+        @order.postal = ''
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Postal can't be blank")
       end
 
-      it "nameが空では登録できない" do
-        @item.name = ''
-        @item.valid?
-        expect(@item.errors.full_messages).to include("Name can't be blank")
+      it "postalに-が入っていないと登録できない"
+        @order.postal = "1234567"
+        expect(@order.errors.full_messages).to include("Postal")
       end
 
-      it "descriptionがないと登録できない" do
-        @item.description = ''
-        @item.valid?
-        expect(@item.errors.full_messages).to include("Description can't be blank")
-      end
-
-      it "priceが空では登録できない" do
-        @item.price = nil
-        @item.valid?
-        expect(@item.errors.full_messages).to include("Price can't be blank", "Price is not a number")
-      end
-
-      it "priceが300未満だと保存できない" do
-        @item.price = 299
-        @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
-      end
-
-      it "priceが9999999より高いと保存できない" do
-        @item.price = 10000000
-        @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
-      end
-
-      it "nameが40字より多いと保存できない" do
-        @item.name = "a" * 41
-        @item.valid?
-        expect(@item.errors.full_messages).to include("Name is too long (maximum is 40 characters)")
-      end
-
-      it "descriptionが1000字より多いと保存できない" do
-        @item.description = "a" * 1001
-        @item.valid?
-        expect(@item.errors.full_messages).to include("Description is too long (maximum is 1000 characters)")
-      end
-
-      it "status_idが1だと保存できない" do
-        @item.status_id = "1"
-        @item.valid?
-        expect(@item.errors.full_messages).to include("Status must be other than 1")
+      it "postalに全角があると登録できない"
+        @order.postal = "１23-4567"
+        expect(@order.errors.full_messages).to include("Postal")
       end
 
       it "area_idが1だと保存できない" do
-        @item.area_id = "1"
-        @item.valid?
-        expect(@item.errors.full_messages).to include("Area must be other than 1")
+        @order.area_id = "1"
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Area must be other than 1")
       end
 
-      it "category_idが1だと保存できない" do
-        @item.category_id = "1"
-        @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+      it "cityが空では登録できない" do
+        @order.city = ''
+        @order.valid?
+        expect(@order.errors.full_messages).to include("City can't be blank")
       end
 
-      it "deli_fee_idが1だと保存できない" do
-        @item.deli_fee_id = "1"
-        @item.valid?
-        expect(@item.errors.full_messages).to include("Deli fee must be other than 1")
+      it "house_numがないと登録できない" do
+        @order.house_num = ''
+        @order.valid?
+        expect(@order.errors.full_messages).to include("House Num can't be blank")
       end
 
-      it "status_idが1だと保存できない" do
-        @item.deli_day_id = "1"
-        @item.valid?
-        expect(@item.errors.full_messages).to include("Deli day must be other than 1")
+      it "phoneが空では登録できない" do
+        @order.phone = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Phone can't be blank", "Price is not a number")
       end
     end
   end
