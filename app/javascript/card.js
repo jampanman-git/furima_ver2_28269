@@ -9,10 +9,14 @@ const pay = () => {
     console.log(status)
     
     const card = {
-      number: formData.get("order_address[number]"),
-      cvc: formData.get("order_address[cvc]"),
-      exp_month: formData.get("order_address[exp_month]"),
-      exp_year: `20${formData.get("order_address[exp_year]")}`,
+      // number: formData.get("order_address[number]"),
+      // cvc: formData.get("order_address[cvc]"),
+      // exp_month: formData.get("order_address[exp_month]"),
+      // exp_year: `20${formData.get("order_address[exp_year]")}`,
+      number: formData.get("number"),
+      cvc: formData.get("cvc"),
+      exp_month: formData.get("exp_month"),
+      exp_year: `20${formData.get("exp_year")}`,
     };
     
 
@@ -21,19 +25,21 @@ const pay = () => {
       console.log(response)
       if (status === 200) {
         const token = response.id;
+        console.log(token)
         const renderDom = document.getElementById("charge-form");
         const tokenObj = `<input value=${token} type="hidden" name='token'>`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
 
-        document.getElementById("order_address_number").removeAttribute("name");
-        document.getElementById("order_address_cvc").removeAttribute("name");
-        document.getElementById("order_address_exp_month").removeAttribute("name");
-        document.getElementById("order_address_exp_year").removeAttribute("name");
+        document.getElementById("number").removeAttribute("name");
+        document.getElementById("cvc").removeAttribute("name");
+        document.getElementById("exp_month").removeAttribute("name");
+        document.getElementById("exp_year").removeAttribute("name");
 
         document.getElementById("charge-form").submit();
         document.getElementById("charge-form").reset();
       } else {
         console.log(status)
+        // alert("false")
       }
     });
   });
