@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :not_user, only: [:new]
-  # before_action :not_user2, only: [:new]
-  # before_action :not_user3, only: [:new]
+  before_action :not_user2, only: [:new]
+  before_action :not_user3, only: [:new]
   def index
   end
 
@@ -49,15 +49,15 @@ class OrdersController < ApplicationController
     end
   end
 
-  # def not_user2
-  #   unless user_signed_in?
-  #     redirect_to item_path(@item.id)
-  #   end
-  # end
+  def not_user2
+    unless user_signed_in?
+      redirect_to item_path(@item.id)
+    end
+  end
 
-  # def not_user3
-  #   if Address exists?(item: @item)
-  #     redirect_to root_path
-  #   end
-  # end
+  def not_user3
+    if Address exists?(item: @item)
+      redirect_to root_path
+    end
+  end
 end
