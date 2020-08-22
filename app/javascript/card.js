@@ -9,11 +9,6 @@ const pay = () => {
     console.log(status)
     
     const card = {
-      // number: formData.get("order_address[number]"),
-      // cvc: formData.get("order_address[cvc]"),
-      // exp_month: formData.get("order_address[exp_month]"),
-      // exp_year: `20${formData.get("order_address[exp_year]")}`,
-      number: formData.get("number"),
       cvc: formData.get("cvc"),
       exp_month: formData.get("exp_month"),
       exp_year: `20${formData.get("exp_year")}`,
