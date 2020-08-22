@@ -13,7 +13,6 @@ class OrdersController < ApplicationController
   def create
     @item = Item.find(params[:item_id])
     @order = OrderAddress.new(order_params)
-    # binding.pry
    if @order.valid?
     pay_item
      @order.save  # バリデーションをクリアした時
@@ -26,20 +25,19 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.permit(:postal,:area_id,:city,:house_num,:building,:phone,:token,:item_id).merge(user_id: current_user.id)
-    # params.permit(:token)
+    params.permit(:postal,:area_id,:city,:house_num,:building,:phone,:item_id).merge(user_id: current_user.id)
   end
 
-  def transaction_params
-    params.permit(:token)
-  end
+  # def transaction_params
+  #   params.permit(:token)
+  # end
 
   def pay_item
     @item = Item.find(params[:item_id])
     Payjp.api_key = "sk_test_6150f8ebb44d193ad998a4f8"  # PAY.JPテスト秘密鍵
     Payjp::Charge.create(
       amount: @item.price,  # 商品の値段
-      card: order_params[:token],    # カードトークン
+      card: params[:token],    # カードトークン
       currency:'jpy'                 # 通貨の種類
     )
   end
