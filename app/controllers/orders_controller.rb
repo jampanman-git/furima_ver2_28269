@@ -15,10 +15,10 @@ class OrdersController < ApplicationController
     @order = OrderAddress.new(order_params)
    if @order.valid?
     pay_item
-     @order.save  # バリデーションをクリアした時
+     @order.save
      return redirect_to root_path
    else
-     render :new    # バリデーションに弾かれた時
+     render :new
    end
   end
 
@@ -28,17 +28,13 @@ class OrdersController < ApplicationController
     params.permit(:postal,:area_id,:city,:house_num,:building,:phone,:item_id).merge(user_id: current_user.id)
   end
 
-  # def transaction_params
-  #   params.permit(:token)
-  # end
-
   def pay_item
     @item = Item.find(params[:item_id])
-    Payjp.api_key = "sk_test_6150f8ebb44d193ad998a4f8"  # PAY.JPテスト秘密鍵
+    Payjp.api_key = "sk_test_6150f8ebb44d193ad998a4f8"
     Payjp::Charge.create(
-      amount: @item.price,  # 商品の値段
-      card: params[:token],    # カードトークン
-      currency:'jpy'                 # 通貨の種類
+      amount: @item.price,
+      card: params[:token], 
+      currency:'jpy'
     )
   end
 
