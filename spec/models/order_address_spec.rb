@@ -10,7 +10,7 @@ describe OrderAddress do
         expect(@order).to be_valid
       end
 
-      it "buildingが空でも登録できる"
+      it "buildingが空でも登録できる" do
         @order.building = ''
         expect(@order).to be_valid
       end
@@ -23,14 +23,22 @@ describe OrderAddress do
         expect(@order.errors.full_messages).to include("Postal can't be blank")
       end
 
-      it "postalに-が入っていないと登録できない"
+      it "postalに-が入っていないと登録できない" do
         @order.postal = "1234567"
-        expect(@order.errors.full_messages).to include("Postal")
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Postal is invalid")
       end
 
-      it "postalに全角があると登録できない"
+      it "postalが9文字だと登録できない" do
+        @order.postal = "123-45670"
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Postal is too long (maximum is 8 characters)", "Postal is invalid")
+      end
+
+      it "postalに全角があると登録できない" do
         @order.postal = "１23-4567"
-        expect(@order.errors.full_messages).to include("Postal")
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Postal is invalid")
       end
 
       it "area_idが1だと保存できない" do
@@ -48,13 +56,13 @@ describe OrderAddress do
       it "house_numがないと登録できない" do
         @order.house_num = ''
         @order.valid?
-        expect(@order.errors.full_messages).to include("House Num can't be blank")
+        expect(@order.errors.full_messages).to include("House num can't be blank")
       end
 
       it "phoneが空では登録できない" do
         @order.phone = nil
         @order.valid?
-        expect(@order.errors.full_messages).to include("Phone can't be blank", "Price is not a number")
+        expect(@order.errors.full_messages).to include("Phone can't be blank", "Phone is invalid")
       end
     end
   end
