@@ -6,7 +6,6 @@ const pay = () => {
 
     const formResult = document.getElementById("charge-form");
     const formData = new FormData(formResult);
-    console.log(status)
     
     const card = {
       cvc: formData.get("cvc"),
@@ -17,10 +16,8 @@ const pay = () => {
 
 
     Payjp.createToken(card, (status, response) => {
-      console.log(response)
       if (status === 200) {
         const token = response.id;
-        console.log(token)
         const renderDom = document.getElementById("charge-form");
         const tokenObj = `<input value=${token} type="hidden" name='token'>`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
@@ -33,8 +30,6 @@ const pay = () => {
         document.getElementById("charge-form").submit();
         document.getElementById("charge-form").reset();
       } else {
-        console.log(status)
-        // alert("false")
       }
     });
   });

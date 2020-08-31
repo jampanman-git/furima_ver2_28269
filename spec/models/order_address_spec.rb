@@ -4,7 +4,7 @@ describe OrderAddress do
     @order = FactoryBot.build(:order_address)
   end
 
-  describe 'ユーザー新規登録' do
+  describe '商品購入' do
     context '商品購入がうまくいくとき' do
       it "全ての項目が存在すれば登録できる" do
         expect(@order).to be_valid
@@ -63,6 +63,12 @@ describe OrderAddress do
         @order.phone = nil
         @order.valid?
         expect(@order.errors.full_messages).to include("Phone can't be blank", "Phone is invalid")
+      end
+
+      it "カードトークンが存在しない場合、購入ができない" do
+        @order.token = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Token can't be blank")
       end
     end
   end

@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :set_item, only: [:new,:create,:pay_item,:not_user,:not_user3]
   before_action :not_user, only: [:new]
   before_action :not_user2, only: [:new]
   before_action :not_user3, only: [:new]
@@ -7,11 +8,9 @@ class OrdersController < ApplicationController
 
   def new
     @order = OrderAddress.new
-    @item = Item.find(params[:item_id])
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order = OrderAddress.new(order_params)
    if @order.valid?
     pay_item
@@ -25,11 +24,10 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.permit(:postal,:area_id,:city,:house_num,:building,:phone,:item_id).merge(user_id: current_user.id)
+    params.permit(:postal,:area_id,:city,:house_num,:building,:phone,:item_id,:token).merge(user_id: current_user.id)
   end
 
   def pay_item
-    @item = Item.find(params[:item_id])
     Payjp.api_key = "sk_test_6150f8ebb44d193ad998a4f8"
     Payjp::Charge.create(
       amount: @item.price,
@@ -38,8 +36,11 @@ class OrdersController < ApplicationController
     )
   end
 
-  def not_user
+  def set_item
     @item = Item.find(params[:item_id])
+  end
+
+  def not_user
     if current_user.id == @item.user_id
       redirect_to item_path(@item.id)
     end
@@ -52,7 +53,7 @@ class OrdersController < ApplicationController
   end
 
   def not_user3
-    if Address exists?(item: @item)
+    if @item.order
       redirect_to root_path
     end
   end
