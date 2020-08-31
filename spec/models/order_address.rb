@@ -5,7 +5,7 @@ describe OrderAddress do
   end
 
   describe 'ユーザー新規登録' do
-    context '商品出品がうまくいくとき' do
+    context '商品購入がうまくいくとき' do
       it "全ての項目が存在すれば登録できる" do
         expect(@order).to be_valid
       end
@@ -16,7 +16,7 @@ describe OrderAddress do
       end
     end
 
-    context '商品出品がうまくいかないとき' do
+    context '商品購入がうまくいかないとき' do
       it "postalが空だと登録できない" do
         @order.postal = ''
         @order.valid?
